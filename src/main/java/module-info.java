@@ -16,6 +16,15 @@ module dev.jlipka.pickly {
 
     requires org.slf4j;
 
+
+    // Export your controller packages
+    exports dev.jlipka.pickly.controller;
+    exports dev.jlipka.pickly.controller.components; // Add this line
+
+    // Open the packages to javafx.fxml
+    opens dev.jlipka.pickly.controller;
+    opens dev.jlipka.pickly.controller.components; // Add this line
+
     opens dev.jlipka.pickly to javafx.fxml;
     exports dev.jlipka.pickly;
     exports dev.jlipka.pickly.server;

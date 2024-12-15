@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="Tab" xmlns:fx="http://javafx.com/fxml">
+    <content>
+        <ScrollPane fitToWidth="true" styleClass="chat-scroll-pane">
+            <content>
+                <VBox fx:id="messageContainer" spacing="10" styleClass="messages-container" />
+            </content>
+        </ScrollPane>
+    </content>
+</fx:root>

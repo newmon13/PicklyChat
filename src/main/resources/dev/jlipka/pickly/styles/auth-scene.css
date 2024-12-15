@@ -1,0 +1,143 @@
+/* Main container styles */
+.main-split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.main-split-pane > .split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #e0e0e0;
+}
+
+/* Left panel styles */
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom right, #A6D974, #84B554);
+}
+
+.welcome-text {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+}
+
+.welcome-subtext {
+    -fx-font-size: 16px;
+    -fx-fill: white;
+    -fx-text-alignment: center;
+}
+
+.features-list {
+    -fx-padding: 20 0 0 0;
+}
+
+.bullet-point {
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-min-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-width: 8px;
+    -fx-max-height: 8px;
+}
+
+.feature-text {
+    -fx-font-size: 14px;
+    -fx-fill: white;
+}
+
+/* Right panel styles */
+.right-panel {
+    -fx-background-color: white;
+}
+
+.auth-tab-pane {
+    -fx-tab-min-height: 40px;
+    -fx-tab-max-height: 40px;
+}
+
+.auth-tab-pane .tab-header-area {
+    -fx-padding: 10 20 0 20;
+}
+
+.tab {
+    -fx-background-color: #f8f9fa;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 8 15;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-border-width: 0;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+/* Form styles */
+.form-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4a5568;
+    -fx-font-weight: bold;
+}
+
+.form-field {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 12;
+    -fx-font-size: 14px;
+}
+
+.form-field:focused {
+    -fx-border-color: #A6D974;
+    -fx-effect: dropshadow(gaussian, rgba(166,217,116,0.2), 4, 0, 0, 0);
+}
+
+.form-checkbox {
+    -fx-text-fill: #4a5568;
+}
+
+.form-checkbox .box {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 4;
+}
+
+.form-checkbox:selected .box {
+    -fx-background-color: #A6D974;
+    -fx-border-color: #A6D974;
+}
+
+.form-link {
+    -fx-text-fill: #A6D974;
+    -fx-underline: false;
+}
+
+.form-link:hover {
+    -fx-text-fill: #84B554;
+}
+
+.auth-button {
+    -fx-background-color: #A6D974;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12;
+    -fx-background-radius: 6;
+}
+
+.auth-button:hover {
+    -fx-background-color: #95C665;
+}
+
+.auth-button:pressed {
+    -fx-background-color: #84B554;
+}
