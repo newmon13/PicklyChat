@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<fx:root type="HBox"
+         fx:controller="dev.jlipka.pickly.controller.components.MessageInputAreaController"
+         alignment="CENTER_LEFT"
+         xmlns:fx="http://javafx.com/fxml"
+         stylesheets="@../../styles/components/MessageInputArea.css">
+    <VBox.margin>
+        <Insets left="16.0" right="16"/>
+    </VBox.margin>
+    <MFXButton fx:id="mediaButton" styleClass="media-button" HBox.hgrow="ALWAYS" prefWidth="80"/>
+    <MFXButton fx:id="emojiButton" styleClass="emoji-button" HBox.hgrow="ALWAYS" prefWidth="80"/>
+    <VBox prefHeight="70" HBox.hgrow="ALWAYS">
+        <TextArea fx:id="messageField" styleClass="message-input" HBox.hgrow="ALWAYS" promptText="..."  wrapText="true"/>
+    </VBox>
+    <MFXButton fx:id="sendButton"  styleClass="send-button" HBox.hgrow="ALWAYS" prefWidth="80"/>
+</fx:root>

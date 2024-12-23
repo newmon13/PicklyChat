@@ -1,0 +1,87 @@
+.message-input-area {
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+}
+
+.mfx-button {
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+}
+
+.media-button {
+    -fx-background-color: #9DC88D;
+    -fx-text-fill: white;
+    -fx-min-width: 40px;
+    -fx-pref-width: 64;
+    -fx-background-radius: 0 0 0 20;
+    -fx-border-radius: 0 0 0 20;
+}
+
+.media-button:hover {
+    -fx-background-color: #8AB57A;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+}
+
+.media-button .mfx-ripple-generator {
+    -mfx-ripple-color: rgba(255, 255, 255, 0.3);
+    -mfx-ripple-radius: 20;
+}
+
+.emoji-button {
+    -fx-background-color: #B8D5B0;
+    -fx-text-fill: #4A5D44;
+    -fx-min-width: 40px;
+    -fx-pref-width: 64;
+}
+
+.emoji-button:hover {
+    -fx-background-color: #A6C59E;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+}
+
+.emoji-button .mfx-ripple-generator {
+    -mfx-ripple-color: rgba(74, 93, 68, 0.2);
+}
+
+.message-input {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent ;
+    -fx-border-width: 1;
+    -fx-text-alignment: CENTER;
+}
+
+.message-input:focused {
+    -fx-border-color: #9DC88D;
+    -fx-effect: dropshadow(gaussian, rgba(157, 200, 141, 0.1), 4, 0, 0, 0);
+}
+
+.send-button {
+    -fx-background-color: linear-gradient(to right, #9DC88D, #8AB57A);
+    -fx-text-fill: white;
+    -fx-min-width: 40px;
+    -fx-pref-width: 64;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+    -fx-border-radius: 0 0 20 0;
+    -fx-background-radius: 0 0 20 0;
+}
+
+.send-button:hover {
+    -fx-background-color: linear-gradient(to right, #8AB57A, #79A469);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0, 0, 2);
+}
+
+.send-button:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(74, 93, 68, 0.1), 3, 0, 0, 1);
+}
+
+.send-button .mfx-ripple-generator {
+    -mfx-ripple-color: rgba(255, 255, 255, 0.3);
+    -mfx-auto-clip: true;
+}

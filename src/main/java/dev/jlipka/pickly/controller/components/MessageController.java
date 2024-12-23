@@ -1,5 +1,6 @@
 package dev.jlipka.pickly.controller.components;
 
+import dev.jlipka.pickly.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
@@ -21,14 +22,14 @@ public class MessageController extends VBox {
     @FXML private TextArea messageContent;
     @FXML private Text statusText;
 
-    public MessageController() {
+    public MessageController(Message message) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dev/jlipka/pickly/view/components/Message.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
         try {
             loader.load();
-            String cssPath = "/dev/jlipka/pickly/styles/Message.css";
+            String cssPath = "/dev/jlipka/pickly/styles/components/Message.css";
             URL cssResource = getClass().getResource(cssPath);
             getStylesheets().add(Objects.requireNonNull(cssResource).toExternalForm());
         } catch (IOException e) {

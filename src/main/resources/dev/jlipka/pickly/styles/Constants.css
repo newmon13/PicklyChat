@@ -1,0 +1,28 @@
+.root {
+
+    -primary-light: #99d19c;
+    -primary-dark: #73ab84;
+    -secondary-light: #ade1e5;
+    -secondary-dark: #79c7c5;
+
+
+    -text-color: #FFFFFF;
+
+    -primary-overlay: #6a6a6a;
+    -active-overlay: #4e4e4e;
+    -pressed-overlay: #393939;
+
+    -icon-min-size: 20px;
+    -icon-preferred-size: 32px;
+    -icon-max-size: 48px;
+    -spacing-unit: 8px;
+
+    -icon-scale: 1.2;
+    -disabled-opacity: 0.5;
+    -transition-duration: 200ms;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f0f2f0;
+    -fx-pref-width: 800;
+    -fx-pref-height: 600;
+}

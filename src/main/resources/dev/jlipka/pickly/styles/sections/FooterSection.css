@@ -1,0 +1,21 @@
+.footer {
+    -fx-background-color: linear-gradient(to bottom, #99d19c, #73ab84);
+    -fx-padding: 10px;
+    -fx-spacing: 20px;
+}
+
+.footer .label {
+    -fx-text-fill: white;
+}
+
+.footer .copyright {
+    -fx-padding: 0 20px;
+}
+
+.footer HBox {
+    -fx-spacing: 10px;
+}
+
+.footer ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+}

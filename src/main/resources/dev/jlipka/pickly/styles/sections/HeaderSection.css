@@ -1,0 +1,42 @@
+.connection-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #EAF4EC;
+    -fx-min-height: 82px;
+    -fx-spacing: 16;
+    -fx-padding: 0 8 16 8;
+}
+
+#customPassword {
+    -fx-border-color: -secondary-gradient;
+}
+
+#customPassword:masked {
+    -fx-text-fill: -mfx-blue;
+}
+
+#customPassword .mfx-font-icon {
+    -mfx-color: -mfx-blue;
+}
+
+#customPassword .mfx-context-menu .mfx-menu-item:disabled .mfx-font-icon {
+    -mfx-color: #bcbcbc;
+}
+
+#customPassword .floating-text {
+    -fx-text-fill: -mfx-blue;
+}
+
+.mfx-button {
+    -fx-padding: 8;
+    -fx-text-fill: -mfx-text-he;
+    -fx-background-color:  #84B059;
+}
+
+.mfx-button .mfx-ripple-generator {
+    -mfx-ripple-radius: 40;
+    -mfx-auto-clip: true;
+}
+
+.mfx-button .text {
+    -fx-font-smoothing-type: gray;
+}

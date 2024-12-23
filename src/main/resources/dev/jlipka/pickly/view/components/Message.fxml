@@ -9,39 +9,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root type="VBox" prefHeight="200.0" prefWidth="272.0" styleClass="message-container"
+<fx:root type="VBox" styleClass="message-container"
          xmlns="http://javafx.com/javafx/21"
-         xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <HBox prefHeight="32.0" prefWidth="272.0" styleClass="message-header">
-            <children>
-                <ImageView fx:id="profilePicture" fitHeight="24.0" fitWidth="24.0"
-                           pickOnBounds="true" preserveRatio="true" styleClass="profile-picture">
-                    <image>
-                        <Image url="@../../static/EmptyAvatar.png" />
-                    </image>
-                </ImageView>
-                <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0"
-                      textAlignment="CENTER" />
-            </children>
-        </HBox>
-        <Separator prefWidth="200.0" />
-        <TextArea fx:id="messageContent" editable="false" focusTraversable="false"
-                  prefRowCount="8" scrollTop="10.0" snapToPixel="false"
-                  wrapText="true" VBox.vgrow="ALWAYS">
-            <font>
-                <Font name="Arial" size="14.0" />
-            </font>
-        </TextArea>
-        <Separator prefWidth="200.0" />
-        <HBox alignment="TOP_RIGHT" styleClass="message-status">
-            <children>
-                <Text fx:id="statusText" strokeType="OUTSIDE" strokeWidth="0.0">
-                    <font>
-                        <Font name="System Italic" size="12.0" />
-                    </font>
-                </Text>
-            </children>
-        </HBox>
-    </children>
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="dev.jlipka.pickly.controller.components.MessageController"
+         stylesheets="/dev/jlipka/pickly/styles/components/Message.css">
+    <HBox styleClass="message-header">
+        <ImageView fx:id="profilePicture">
+            <Image url="@/dev/jlipka/pickly/static/EmptyAvatar.png"/>
+        </ImageView>
+        <Text fx:id="userName"/>
+    </HBox>
+    <Separator/>
+    <TextArea fx:id="messageContent">
+        <font><Font/></font>
+    </TextArea>
+    <Separator/>
+    <HBox styleClass="message-status">
+        <Text fx:id="statusText">
+            <font><Font/></font>
+        </Text>
+    </HBox>
 </fx:root>

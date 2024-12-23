@@ -20,8 +20,8 @@
 
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="dev.jlipka.pickly.controller.ChatController"
-           stylesheets="@../../styles/auth-scene.css"
+           fx:controller="dev.jlipka.pickly.controller.ChatSceneController"
+           stylesheets="@../../styles/scenes/AuthScene.css"
            prefHeight="600.0"
            prefWidth="900.0">
     <SplitPane dividerPositions="0.5" styleClass="main-split-pane">

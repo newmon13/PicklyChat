@@ -8,9 +8,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import static java.util.concurrent.Executors.newSingleThreadExecutor;
 
 public class SecureChannelHandshaker {

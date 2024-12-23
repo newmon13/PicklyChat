@@ -1,5 +1,8 @@
 package dev.jlipka.pickly;
 
+import io.github.palexdev.materialfx.theming.JavaFXThemes;
+import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
+import io.github.palexdev.materialfx.theming.UserAgentBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,14 +14,23 @@ import java.io.InputStream;
 import java.util.Objects;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/scenes/chat-scene.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        UserAgentBuilder.builder()
+                .themes(JavaFXThemes.MODENA)
+                .themes(MaterialFXStylesheets.forAssemble(true))
+                .setDeploy(true)
+                .setResolveAssets(true)
+                .build()
+                .setGlobal();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/scenes/MainScene.fxml"));
+        Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("Pickly");
-        stage.setScene(scene);
         InputStream iconStream = getClass().getResourceAsStream("static/favicon.png");
         stage.getIcons().add(new Image(Objects.requireNonNull(iconStream)));
+        stage.setScene(scene);
         stage.show();
     }
 

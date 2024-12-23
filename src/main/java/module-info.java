@@ -1,6 +1,4 @@
 module dev.jlipka.pickly {
-    requires javafx.controls;
-    requires javafx.fxml;
     requires javafx.web;
 
     requires org.controlsfx.controls;
@@ -15,18 +13,21 @@ module dev.jlipka.pickly {
     requires morfologik.stemming;
 
     requires org.slf4j;
+    requires MaterialFX;
 
+    exports dev.jlipka.pickly.controller.components;
+    exports dev.jlipka.pickly.model;
 
-    // Export your controller packages
-    exports dev.jlipka.pickly.controller;
-    exports dev.jlipka.pickly.controller.components; // Add this line
-
-    // Open the packages to javafx.fxml
-    opens dev.jlipka.pickly.controller;
-    opens dev.jlipka.pickly.controller.components; // Add this line
+    opens dev.jlipka.pickly.controller.components;
+    opens dev.jlipka.pickly.model;
 
     opens dev.jlipka.pickly to javafx.fxml;
     exports dev.jlipka.pickly;
     exports dev.jlipka.pickly.server;
     opens dev.jlipka.pickly.server to javafx.fxml;
+
+    exports dev.jlipka.pickly.controller.sections;
+    opens dev.jlipka.pickly.controller.sections;
+    exports dev.jlipka.pickly.controller.scenes;
+    opens dev.jlipka.pickly.controller.scenes;
 }

@@ -1,0 +1,51 @@
+
+.navSection {
+    -fx-background-radius: 10;
+    -fx-border-radius: black;
+    -fx-border-width: 1;
+}
+
+#custList {
+    -fx-background-color: #b7d5b8;
+    -fx-background-radius: 0 0 10 10;
+    /*-fx-border-color: grey;*/
+    /*-fx-border-radius: 0 0 10 10;*/
+    -fx-padding: 4;
+}
+
+#custList .virtual-flow {
+    -fx-background-color: transparent;
+}
+
+#custList:focused {
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.2;
+}
+
+#custList .virtual-flow .mfx-list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 0 0 10 10;
+}
+
+#custList .virtual-flow .mfx-list-cell .data-label {
+    -fx-text-fill: #454545;
+}
+
+#custList .virtual-flow .mfx-list-cell .user-icon {
+    -mfx-color: #454545;
+}
+
+#custList .virtual-flow .mfx-list-cell:hover,
+#custList .virtual-flow .mfx-list-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+#custList .virtual-flow .mfx-list-cell .mfx-ripple-generator {
+    -mfx-auto-clip: true;
+}
+
+#custList .virtual-flow .mfx-list-cell:selected .mfx-ripple-generator {
+    -mfx-paused: true;
+}

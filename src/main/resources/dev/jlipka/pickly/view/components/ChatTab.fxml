@@ -2,12 +2,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="Tab" xmlns:fx="http://javafx.com/fxml">
-    <content>
-        <ScrollPane fitToWidth="true" styleClass="chat-scroll-pane">
-            <content>
-                <VBox fx:id="messageContainer" spacing="10" styleClass="messages-container" />
-            </content>
-        </ScrollPane>
-    </content>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="dev.jlipka.pickly.controller.components.ChatTabController"
+         type="Tab" text="User Name placeholder">
+
+    <ImageView>
+        <Image/>
+    </ImageView>
+    <ScrollPane>
+        <VBox fx:id="chatContainer">
+
+
+        </VBox>
+    </ScrollPane>
 </fx:root>

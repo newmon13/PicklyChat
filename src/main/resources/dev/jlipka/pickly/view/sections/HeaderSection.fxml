@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         prefHeight="100"
+         styleClass="connection-bar"
+         stylesheets="@../../styles/sections/HeaderSection.css"
+         type="HBox"
+         fx:controller="dev.jlipka.pickly.controller.sections.HeaderSectionController">
+    <ImageView fitHeight="96" fitWidth="96" preserveRatio="true">
+        <Image url="@../../static/logo.png"/>
+    </ImageView>
+    <HBox HBox.hgrow="ALWAYS" alignment="CENTER" spacing="16">
+        <MFXPasswordField fx:id="addressField" floatingText="Address"/>
+        <MFXPasswordField fx:id="portField" floatingText="Port"/>
+        <MFXButton text="Connect"/>
+    </HBox>
+</fx:root>
