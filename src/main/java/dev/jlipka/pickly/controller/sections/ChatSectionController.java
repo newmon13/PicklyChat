@@ -17,7 +17,6 @@ import java.io.IOException;
 public class ChatSectionController {
     public VBox chatSection;
     public HBox messageInput;
-    public Button testButton;
 
     private ChatTabPaneController chatTabPaneController;
     private MessageInputAreaController messageInputAreaController;
@@ -27,15 +26,12 @@ public class ChatSectionController {
         loadMessageInputArea();
         loadChatTabPane();
         chatTabPaneController.setMessageInput(messageInputAreaController);
-
-        testButton.setOnAction(actionEvent -> {
-            chatTabPaneController.  addTab("user");
-        });
     }
 
     private void loadMessageInputArea() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dev/jlipka/pickly/view/components/MessageInputArea.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/dev/jlipka/pickly/view/components/MessageInputArea.fxml"));
             loader.setRoot(messageInput);
             loader.load();
             messageInputAreaController = loader.getController();
@@ -46,7 +42,8 @@ public class ChatSectionController {
 
     private void loadChatTabPane() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dev/jlipka/pickly/view/components/ChatTabPane.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/dev/jlipka/pickly/view/components/ChatTabPane.fxml"));
             TabPane tabPane = loader.load();
             int offset = chatSection.getChildren().indexOf(messageInput);
             chatSection.getChildren().add(offset, tabPane);

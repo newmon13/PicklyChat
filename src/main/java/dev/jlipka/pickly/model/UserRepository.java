@@ -18,7 +18,6 @@
 
 package dev.jlipka.pickly.model;
 
-import io.github.palexdev.materialfx.utils.FXCollectors;
 import io.github.palexdev.mfxresources.fonts.IconDescriptor;
 import io.github.palexdev.mfxresources.fonts.fontawesome.FontAwesomeBrands;
 import io.github.palexdev.mfxresources.fonts.fontawesome.FontAwesomeRegular;
@@ -26,13 +25,15 @@ import io.github.palexdev.mfxresources.fonts.fontawesome.FontAwesomeSolid;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.stream.IntStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
 
-import static dev.jlipka.pickly.model.Device.State.OFFLINE;
-import static dev.jlipka.pickly.model.Device.State.ONLINE;
-import static dev.jlipka.pickly.model.Device.randomID;
-
-public class Model {
+public class UserRepository {
 	public static final IconDescriptor[] notificationsIcons;
 	public static final ObservableList<User> users;
 
@@ -75,5 +76,20 @@ public class Model {
 				User.ofSplit("Lukas Vaughan", " ").randomAge(),
 				User.ofSplit("Charlie Carney", " ").randomAge()
 		);
-	}
+		URL resource = UserRepository.class.getResource("/dev/jlipka/pickly/static/EmptyAvatar.png");
+
+		if (resource == null) {
+			throw new RuntimeException("Resource not found");
+		}
+
+		try {
+			File file = new File(resource.toURI());
+			byte[] imageBytesArray = Files.readAllBytes(file.toPath());
+			users.get(0).setAvatar(imageBytesArray);
+		} catch (IOException e) {
+			throw new RuntimeException("Error reading avatar file", e);
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
+    }
 }

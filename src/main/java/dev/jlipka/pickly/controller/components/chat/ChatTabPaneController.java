@@ -23,11 +23,17 @@ public class ChatTabPaneController {
         chatTabs = new HashMap<>();
     }
 
+    @FXML
+    public void initialize() {
+        tabPane.setUserData(this);
+    }
+
     public void addTab(String name) {
         try {
             System.out.println("DODAWANIE TABA");
             Tab tab = new Tab();
-            tab.setText("eeee");
+            tab.setText(name);
+            tab.setId(name);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dev/jlipka/pickly/view/components/ChatTab.fxml"));
             loader.setRoot(tab);
             loader.load();

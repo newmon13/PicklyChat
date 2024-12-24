@@ -14,6 +14,7 @@ module dev.jlipka.pickly {
 
     requires org.slf4j;
     requires MaterialFX;
+    requires javafx.media;
 
     exports dev.jlipka.pickly.model;
 

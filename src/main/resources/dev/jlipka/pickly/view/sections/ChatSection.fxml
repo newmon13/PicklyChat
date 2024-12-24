@@ -21,10 +21,7 @@
          xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="dev.jlipka.pickly.controller.sections.ChatSectionController"
          stylesheets="@../../styles/sections/ChatSection.css">
-    <VBox fx:id="chatSection" styleClass="chat-section">
-        <Button fx:id="testButton"> </Button>
-
-
+    <VBox fx:id="chatSection">
         <HBox fx:id="messageInput"
               VBox.vgrow="ALWAYS"
               prefWidth="Infinity"

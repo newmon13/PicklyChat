@@ -19,32 +19,60 @@
 package dev.jlipka.pickly.model;
 
 import io.github.palexdev.materialfx.utils.RandomUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Getter
 public class User {
-	private final String name;
-	private final String surname;
+	private String username;
+	private String name;
+	private String surname;
+    @Setter
+    private byte[] avatar;
+	private Status status;
+	private ObservableList<String> observableAttributes;
+
 	@Setter
     private int age;
 
-	public User(String name) {
-		this.name = name;
-		this.surname = "";
+	public User() {
+		observableAttributes = FXCollections.observableArrayList();
+		observableAttributes.addListener((ListChangeListener<String>) change -> {
+			while (change.next()){
+				if (change.wasAdded()) {
+					log.info("User: {} updated data", username );
+				} else if (change.wasRemoved()) {
+					log.info("User: {} removed data", username );
+
+				} else if (change.wasUpdated()) {
+					log.info("User: {} changed data", username );
+				} else {
+					log.info("User: {} did sth with his data", username );
+				}
+			}
+		});
+	}
+
+	public User(String username) {
+		this();
+        this.username = username;
+		observableAttributes.add(username);
 	}
 
 	public User(String name, String surname) {
+		this();
 		this.name = name;
 		this.surname = surname;
-	}
-
-	public User(String name, String surname, int age) {
-		this.name = name;
-		this.surname = surname;
-		this.age = age;
+		observableAttributes.addAll(name, surname);
 	}
 
 	public static User ofSplit(String fullName, String split) {
@@ -69,4 +97,5 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(getName());
 	}
+
 }
