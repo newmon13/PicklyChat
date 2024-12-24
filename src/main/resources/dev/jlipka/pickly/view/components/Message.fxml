@@ -9,14 +9,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root type="VBox" styleClass="message-container"
+<fx:root type="VBox"
+         styleClass="message-container"
          xmlns="http://javafx.com/javafx/21"
          xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="dev.jlipka.pickly.controller.components.MessageController"
-         stylesheets="/dev/jlipka/pickly/styles/components/Message.css">
+         fx:controller="dev.jlipka.pickly.controller.components.chat.MessageController"
+         stylesheets="@../../styles/components/Message.css">
+
     <HBox styleClass="message-header">
         <ImageView fx:id="profilePicture">
-            <Image url="@/dev/jlipka/pickly/static/EmptyAvatar.png"/>
+            <Image url="/dev/jlipka/pickly/static/EmptyAvatar.png"/>
         </ImageView>
         <Text fx:id="userName"/>
     </HBox>

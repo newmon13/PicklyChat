@@ -1,41 +1,22 @@
-package dev.jlipka.pickly.controller.components;
+package dev.jlipka.pickly.controller.components.chat;
 
-import dev.jlipka.pickly.Message;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
 
 @Getter
 @Slf4j
-public class MessageController extends VBox {
+public class MessageController {
     @FXML private ImageView profilePicture;
     @FXML private Text userName;
     @FXML private TextArea messageContent;
     @FXML private Text statusText;
 
-    public MessageController(Message message) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dev/jlipka/pickly/view/components/Message.fxml"));
-        loader.setRoot(this);
-        loader.setController(this);
-
-        try {
-            loader.load();
-            String cssPath = "/dev/jlipka/pickly/styles/components/Message.css";
-            URL cssResource = getClass().getResource(cssPath);
-            getStylesheets().add(Objects.requireNonNull(cssResource).toExternalForm());
-        } catch (IOException e) {
-            log.error("Failed to load Message.fxml", e);
-            throw new RuntimeException(e);
-        }
+    public MessageController() {
     }
 
     public void setUserName(String name) {
@@ -55,7 +36,6 @@ public class MessageController extends VBox {
     }
 
     public void setMessageType(String type) {
-        getStyleClass().add(type);
         messageContent.getStyleClass().addAll("message", type);
     }
 

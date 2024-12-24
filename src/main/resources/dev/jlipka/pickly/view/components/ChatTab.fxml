@@ -4,18 +4,15 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
 <fx:root xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
-         fx:controller="dev.jlipka.pickly.controller.components.ChatTabController"
-         type="Tab" text="User Name placeholder">
-
-    <ImageView>
-        <Image/>
-    </ImageView>
-    <ScrollPane>
-        <VBox fx:id="chatContainer">
-
-
-        </VBox>
-    </ScrollPane>
+         fx:controller="dev.jlipka.pickly.controller.components.chat.ChatTabController"
+         type="Tab" >
+<!--    <ImageView>-->
+<!--        <Image url="@../../static/EmptyAvatar.png"/>-->
+<!--    </ImageView>-->
+<!--    <ScrollPane stylesheets="@../../styles/components/ChatTabPane.css">-->
+<!--        <VBox fx:id="chatContainer"/>-->
+<!--    </ScrollPane>-->
 </fx:root>

@@ -8,27 +8,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextArea?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.Text?>
 <fx:root minHeight="240"
          minWidth="240"
          prefHeight="500.0"
          prefWidth="600.0"
-         stylesheets="@../../styles/sections/ChatSection.css"
-         style="-fx-background-color: #EAF4EC"
          type="VBox"
          VBox.vgrow="ALWAYS"
          xmlns="http://javafx.com/javafx/23.0.1"
          xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="dev.jlipka.pickly.controller.sections.ChatSectionController">
-    <VBox fx:id="chatSection">
-        <TabPane fx:id="chatTabPane" prefHeight="350.0">
-            <VBox.margin>
-                <Insets left="16.0" right="16" top="16"/>
-            </VBox.margin>
-            <Tab text="User"/>
-            <Tab text="User"/>
-            <Tab text="User"/>
-            <Tab text="User"/>
-        </TabPane>
+         fx:controller="dev.jlipka.pickly.controller.sections.ChatSectionController"
+         stylesheets="@../../styles/sections/ChatSection.css">
+    <VBox fx:id="chatSection" styleClass="chat-section">
+        <Button fx:id="testButton"> </Button>
+
+
         <HBox fx:id="messageInput"
               VBox.vgrow="ALWAYS"
               prefWidth="Infinity"

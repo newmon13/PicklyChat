@@ -1,6 +1,6 @@
 package dev.jlipka.pickly.controller.sections;
 
-import dev.jlipka.pickly.model.Person;
+import dev.jlipka.pickly.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.cell.MFXListCell;
@@ -16,14 +16,14 @@ import java.util.stream.Stream;
 
 import static dev.jlipka.pickly.controller.utils.IconAccessor.getIcon;
 import static dev.jlipka.pickly.controller.utils.IconAccessor.setIcon;
-import static dev.jlipka.pickly.model.Model.people;
+import static dev.jlipka.pickly.model.Model.users;
 
 public class NavSectionController {
     public MFXButton favButton;
     public MFXButton searchButton;
     public MFXButton notificationButton;
     public MFXButton settingsButton;
-    public MFXListView<Person> customList;
+    public MFXListView<User> customList;
     private final String[] iconDescriptions = new String[]{
             "fas-heart",
             "fas-magnifying-glass",
@@ -31,8 +31,8 @@ public class NavSectionController {
             "fas-gear",
     };
 
-    StringConverter<Person> converter = FunctionalStringConverter.to(
-            person -> (person == null) ? "" : person.getName() + " " + person.getSurname());
+    StringConverter<User> converter = FunctionalStringConverter.to(
+            user -> (user == null) ? "" : user.getName() + " " + user.getSurname());
 
 
     public NavSectionController() {
@@ -48,17 +48,17 @@ public class NavSectionController {
                     MFXFontIcon icon = getIcon(iterator.next(), IconsProviders.FONTAWESOME_SOLID);
                     setIcon(mfxButton, icon);
                 });
-        customList.setItems(people);
-        customList.setCellFactory(person -> new PersonCellFactory(customList, person));
+        customList.setItems(users);
+        customList.setCellFactory(user -> new PersonCellFactory(customList, user));
         customList.features().enableBounceEffect();
         customList.features().enableSmoothScrolling(0.5);
         customList.setConverter(converter);
     }
 
-    private static class PersonCellFactory extends MFXListCell<Person> {
+    private static class PersonCellFactory extends MFXListCell<User> {
         private final MFXFontIcon userIcon;
 
-        public PersonCellFactory(MFXListView<Person> listView, Person data) {
+        public PersonCellFactory(MFXListView<User> listView, User data) {
             super(listView, data);
 
             userIcon = new MFXFontIcon("fas-user", 18);
@@ -67,7 +67,7 @@ public class NavSectionController {
         }
 
         @Override
-        protected void render(Person data) {
+        protected void render(User data) {
             super.render(data);
             if (userIcon != null) getChildren().add(0, userIcon);
         }

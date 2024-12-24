@@ -1,6 +1,5 @@
 package dev.jlipka.pickly.controller.scenes;
 
-import dev.jlipka.pickly.controller.components.MessageInputAreaController;
 import dev.jlipka.pickly.controller.sections.ChatSectionController;
 import dev.jlipka.pickly.controller.sections.FooterSectionController;
 import dev.jlipka.pickly.controller.sections.HeaderSectionController;

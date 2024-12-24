@@ -15,10 +15,8 @@ module dev.jlipka.pickly {
     requires org.slf4j;
     requires MaterialFX;
 
-    exports dev.jlipka.pickly.controller.components;
     exports dev.jlipka.pickly.model;
 
-    opens dev.jlipka.pickly.controller.components;
     opens dev.jlipka.pickly.model;
 
     opens dev.jlipka.pickly to javafx.fxml;
@@ -30,4 +28,6 @@ module dev.jlipka.pickly {
     opens dev.jlipka.pickly.controller.sections;
     exports dev.jlipka.pickly.controller.scenes;
     opens dev.jlipka.pickly.controller.scenes;
+    exports dev.jlipka.pickly.controller.components.chat;
+    opens dev.jlipka.pickly.controller.components.chat;
 }

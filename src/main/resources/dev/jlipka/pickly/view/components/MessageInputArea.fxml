@@ -4,7 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <fx:root type="HBox"
-         fx:controller="dev.jlipka.pickly.controller.components.MessageInputAreaController"
+         fx:controller="dev.jlipka.pickly.controller.components.chat.MessageInputAreaController"
          alignment="CENTER_LEFT"
          xmlns:fx="http://javafx.com/fxml"
          stylesheets="@../../styles/components/MessageInputArea.css">

@@ -1,23 +1,14 @@
-package dev.jlipka.pickly.controller.components;
+package dev.jlipka.pickly.controller.components.chat;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
-import io.github.palexdev.mfxresources.fonts.IconDescriptor;
 import io.github.palexdev.mfxresources.fonts.IconsProviders;
 import io.github.palexdev.mfxresources.fonts.MFXFontIcon;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 import static dev.jlipka.pickly.controller.utils.IconAccessor.getIcon;

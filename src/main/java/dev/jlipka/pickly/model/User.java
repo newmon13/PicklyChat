@@ -19,52 +19,40 @@
 package dev.jlipka.pickly.model;
 
 import io.github.palexdev.materialfx.utils.RandomUtils;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
-public class Person {
+@Getter
+public class User {
 	private final String name;
 	private final String surname;
-	private int age;
+	@Setter
+    private int age;
 
-	public Person(String name) {
+	public User(String name) {
 		this.name = name;
 		this.surname = "";
 	}
 
-	public Person(String name, String surname) {
+	public User(String name, String surname) {
 		this.name = name;
 		this.surname = surname;
 	}
 
-	public Person(String name, String surname, int age) {
+	public User(String name, String surname, int age) {
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
 	}
 
-	public static Person ofSplit(String fullName, String split) {
+	public static User ofSplit(String fullName, String split) {
 		String[] fNameArray = fullName.split(split);
-		return new Person(fNameArray[0], fNameArray[1]);
+		return new User(fNameArray[0], fNameArray[1]);
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public Person randomAge() {
+    public User randomAge() {
 		setAge(RandomUtils.random.nextInt(18, 81));
 		return this;
 	}
@@ -73,8 +61,8 @@ public class Person {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Person person = (Person) o;
-		return getName().equals(person.getName());
+		User user = (User) o;
+		return getName().equals(user.getName());
 	}
 
 	@Override
