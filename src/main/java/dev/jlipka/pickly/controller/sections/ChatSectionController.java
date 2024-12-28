@@ -4,27 +4,23 @@ import dev.jlipka.pickly.controller.components.chat.ChatTabPaneController;
 import dev.jlipka.pickly.controller.components.chat.MessageInputAreaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 
 
 @Slf4j
 public class ChatSectionController {
     public VBox chatSection;
-    public HBox messageInput;
-
+    public VBox messageInput;
     private ChatTabPaneController chatTabPaneController;
     private MessageInputAreaController messageInputAreaController;
 
     @FXML
     public void initialize() {
-        loadMessageInputArea();
         loadChatTabPane();
+        loadMessageInputArea();
         chatTabPaneController.setMessageInput(messageInputAreaController);
     }
 
@@ -48,7 +44,6 @@ public class ChatSectionController {
             int offset = chatSection.getChildren().indexOf(messageInput);
             chatSection.getChildren().add(offset, tabPane);
             chatTabPaneController = loader.getController();
-            System.out.println("ChatTabPaneController loaded: " + chatTabPaneController);
         } catch (IOException e) {
             throw new RuntimeException("Failed to load chat tab pane", e);
         }

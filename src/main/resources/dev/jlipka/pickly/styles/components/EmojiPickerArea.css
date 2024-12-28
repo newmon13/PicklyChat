@@ -1,0 +1,21 @@
+.emoji-picker-root {
+    -fx-background-color: #84B059;
+}
+
+.tab-pane .tab {
+    -fx-background-insets: 0 1 0 1,0,0;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-radius: 8 8 0 0;
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-translate-x: 8;
+    -fx-background-color: #EAF4EC;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.833em;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #84B059;
+}

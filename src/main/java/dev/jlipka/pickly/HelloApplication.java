@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class HelloApplication extends Application {
                 .setGlobal();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/scenes/MainScene.fxml"));
+        Font.loadFont(getClass().getResourceAsStream("dev/jlipka/pickly/font/fontawesome-webfont.ttf"), 12);
+
         Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("Pickly");
         InputStream iconStream = getClass().getResourceAsStream("static/favicon.png");

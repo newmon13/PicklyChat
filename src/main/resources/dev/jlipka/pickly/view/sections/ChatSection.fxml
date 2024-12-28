@@ -22,10 +22,12 @@
          fx:controller="dev.jlipka.pickly.controller.sections.ChatSectionController"
          stylesheets="@../../styles/sections/ChatSection.css">
     <VBox fx:id="chatSection">
-        <HBox fx:id="messageInput"
+        <VBox fx:id="messageInput"
               VBox.vgrow="ALWAYS"
+              alignment="BOTTOM_CENTER"
               prefWidth="Infinity"
               styleClass="message-input-area">
-        </HBox>
+        </VBox>
+
     </VBox>
 </fx:root>

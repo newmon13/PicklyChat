@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.jlipka.pickly.controller.components.media.EmojiPickerAreaController"
+      stylesheets="@../../styles/components/EmojiPickerArea.css"
+      minHeight="120"
+      minWidth="400"
+      fx:id="emojiPickerRoot"
+      styleClass="emoji-picker-root">
+    <VBox.margin>
+        <Insets left="16.0" right="16"/>
+    </VBox.margin>
+    <TabPane fx:id="emojiTabPane" HBox.hgrow="ALWAYS"/>
+</HBox>
