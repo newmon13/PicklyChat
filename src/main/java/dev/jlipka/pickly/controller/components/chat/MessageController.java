@@ -13,11 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageController {
     @FXML private ImageView profilePicture;
     @FXML private Text userName;
-    @FXML private TextArea messageContent;
+    @FXML private Text messageContent;
     @FXML private Text statusText;
-
-    public MessageController() {
-    }
 
     public void setUserName(String name) {
         userName.setText(name);
@@ -41,8 +38,8 @@ public class MessageController {
 
     @FXML
     private void initialize() {
-        messageContent.setEditable(false);
+//        messageContent.setEditable(false);
         messageContent.setFocusTraversable(false);
-        messageContent.setWrapText(true);
+//        messageContent.setWrapText(true);
     }
 }

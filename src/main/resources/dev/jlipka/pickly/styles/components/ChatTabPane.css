@@ -47,3 +47,9 @@
 .tab-pane .tab-header-area .tab-header-background {
     -fx-opacity: 0;
 }
+
+.chat-container {
+    -fx-background-color: #84B059;
+    -fx-background-radius: 20 20 0 0;
+    -fx-padding: 16;
+}

@@ -22,5 +22,4 @@ public enum EmojiCatalog {
         this.categoryName = categoryName;
         this.representative = representative;
     }
-
 }

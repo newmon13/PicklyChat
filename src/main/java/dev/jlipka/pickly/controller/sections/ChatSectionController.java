@@ -2,10 +2,13 @@ package dev.jlipka.pickly.controller.sections;
 
 import dev.jlipka.pickly.controller.components.chat.ChatTabPaneController;
 import dev.jlipka.pickly.controller.components.chat.MessageInputAreaController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 

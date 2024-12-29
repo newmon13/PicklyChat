@@ -9,27 +9,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.text.TextFlow?>
 <fx:root type="VBox"
          styleClass="message-container"
          xmlns="http://javafx.com/javafx/21"
          xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="dev.jlipka.pickly.controller.components.chat.MessageController"
-         stylesheets="@../../styles/components/Message.css">
+         stylesheets="@../../styles/components/Message.css"
+         spacing="5">
 
-    <HBox styleClass="message-header">
-        <ImageView fx:id="profilePicture">
+    <HBox styleClass="message-header" spacing="10" alignment="CENTER_LEFT">
+        <ImageView fx:id="profilePicture" fitHeight="32" fitWidth="32" preserveRatio="true">
             <Image url="/dev/jlipka/pickly/static/EmptyAvatar.png"/>
         </ImageView>
-        <Text fx:id="userName"/>
+        <Text fx:id="userName" styleClass="username-text"/>
     </HBox>
-    <Separator/>
-    <TextArea fx:id="messageContent">
-        <font><Font/></font>
-    </TextArea>
-    <Separator/>
-    <HBox styleClass="message-status">
-        <Text fx:id="statusText">
-            <font><Font/></font>
-        </Text>
+
+    <TextFlow fx:id="messageContentContainer" styleClass="message-content">
+        <Text fx:id="messageContent" wrappingWidth="0" styleClass="message-text"/>
+    </TextFlow>
+
+    <HBox styleClass="message-status" alignment="CENTER_RIGHT">
+        <Text fx:id="statusText" styleClass="status-text"/>
     </HBox>
 </fx:root>

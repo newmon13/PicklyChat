@@ -13,7 +13,9 @@
          fx:controller="dev.jlipka.pickly.controller.components.chat.ChatTabPaneController"
          stylesheets="@../../styles/components/ChatTabPane.css"
          fx:id="tabPane"
-         prefHeight="350.0">
+         minHeight="200"
+         prefHeight="500.0"
+         maxHeight="Infinity">
         <VBox.margin>
             <Insets left="16.0" right="16" top="16"/>
         </VBox.margin>

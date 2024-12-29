@@ -66,7 +66,6 @@
     -fx-background-color: linear-gradient(to right, #9DC88D, #8AB57A);
     -fx-text-fill: white;
     -fx-min-width: 40px;
-    -fx-pref-width: 64;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
     -fx-border-radius: 0 0 20 0;
     -fx-background-radius: 0 0 20 0;

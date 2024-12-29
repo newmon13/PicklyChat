@@ -1,5 +1,6 @@
 package dev.jlipka.pickly.controller.scenes;
 
+import dev.jlipka.pickly.TestClient;
 import dev.jlipka.pickly.controller.sections.ChatSectionController;
 import dev.jlipka.pickly.controller.sections.FooterSectionController;
 import dev.jlipka.pickly.controller.sections.HeaderSectionController;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 import java.io.IOException;
 
@@ -16,6 +18,13 @@ public class MainSceneController {
     public VBox mainSection;
     public VBox navSection;
     public HBox footerSection;
+
+    @Getter
+    private TestClient client;
+
+//    public MainSceneController(TestClient client) {
+//        this.client = client;
+//    }
 
     @FXML
     public void initialize() {

@@ -1,9 +1,12 @@
-.message-sent {
-    -fx-alignment: CENTER_RIGHT;
-}
-
-.message-received {
-    -fx-alignment: CENTER_LEFT;
+.message-container {
+    -fx-border-width: 1;
+    -fx-border-color: lightgrey;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);
+    /*-fx-max-width: max-wdith is binded with the current width of tab;*/
+    -fx-min-width: 200;
+    -fx-padding: 0;
 }
 
 .message-header {
@@ -14,12 +17,21 @@
     -fx-alignment: center-left;
 }
 
-.message-container {
-    -fx-border-width: 1;
-    -fx-border-color: lightgrey;
-    -fx-background-radius: 16;
-    -fx-border-radius: 16;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);
+.username-text {
+    -fx-font-weight: bold;
+    -fx-fill: #2C3E50;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.message-content {
+    -fx-background-color: #A6D974;
+    -fx-padding: 10 12;
+}
+
+.message-text {
+    -fx-font-size: 14;
+    -fx-fill: #2C3E50;
+    -fx-font-family: 'Segoe UI', sans-serif;
 }
 
 .message-status {
@@ -29,6 +41,13 @@
     -fx-alignment: center-right;
 }
 
+.status-text {
+    -fx-fill: #2C3E50;
+    -fx-font-size: 12;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* In case you still want to use TextArea somewhere */
 .text-area {
     -fx-background-color: #A6D974;
     -fx-text-fill: #2C3E50;
@@ -40,7 +59,6 @@
 .text-area .content {
     -fx-background-color: #A6D974;
 }
-
 
 
 

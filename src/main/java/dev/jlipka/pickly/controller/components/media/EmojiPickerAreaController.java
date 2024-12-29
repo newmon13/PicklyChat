@@ -5,6 +5,7 @@ import com.gluonhq.emoji.EmojiData;
 import com.gluonhq.emoji.util.EmojiImageUtils;
 import com.gluonhq.emoji.util.TextUtils;
 import com.gluonhq.richtextarea.RichTextArea;
+import dev.jlipka.pickly.controller.components.chat.MessageInputAreaController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -27,8 +29,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EmojiPickerAreaController {
     public TabPane emojiTabPane;
-    public HBox emojiPickerRoot;
-
     @FXML
     public void initialize() {
         populateCategoryTabs();
@@ -38,9 +38,7 @@ public class EmojiPickerAreaController {
         String text = getAllCategoriesAsUnicodeString();
         EmojiCatalog[] values = EmojiCatalog.values();
         Iterator<EmojiCatalog> iterator = Arrays.stream(values).iterator();
-
         List<Node> categoriesNodes = processEmojis(text);
-
         Platform.runLater(() -> {
             categoriesNodes.forEach(categoryNode -> {
                 MFXButton categoryButton = new MFXButton();
@@ -63,10 +61,8 @@ public class EmojiPickerAreaController {
         FlowPane flowPane = new FlowPane();
         flowPane.maxWidth(Double.MAX_VALUE);
         flowPane.maxHeight(Double.MAX_VALUE);
-
         List<Node> emojiNodes = processEmojis(getCategoryEmojisAsUnicodeString(category));
         addCategoryEmojis(emojiNodes, flowPane);
-
         scrollPane.setContent(flowPane);
         tab.setContent(scrollPane);
         return tab;
@@ -74,15 +70,13 @@ public class EmojiPickerAreaController {
 
     private void addCategoryEmojis(List<Node> emojiNodes, Pane parent) {
         RichTextArea richTextAreaHook = (RichTextArea) emojiTabPane.getScene().lookup("#messageField");
-
             emojiNodes.forEach(node -> {
                 MFXButton emojiButton = new MFXButton();
                 emojiButton.setOnMouseClicked(mouseEvent -> {
                     Emoji emoji = (Emoji) node.getUserData();
                     richTextAreaHook.getActionFactory().insertEmoji(emoji).execute(new ActionEvent());
-                    closeEmojiPicker();
+                    MessageInputAreaController.toggleEmojiTabPane();
                 });
-
                 emojiButton.setText("");
                 emojiButton.setGraphic(node);
                 parent.getChildren().add(emojiButton);
@@ -115,9 +109,5 @@ public class EmojiPickerAreaController {
         return Arrays.stream(EmojiCatalog.values())
                 .map(EmojiCatalog::getRepresentative)
                 .collect(Collectors.joining());
-    }
-
-    private void closeEmojiPicker() {
-        emojiTabPane.setVisible(false);
     }
 }

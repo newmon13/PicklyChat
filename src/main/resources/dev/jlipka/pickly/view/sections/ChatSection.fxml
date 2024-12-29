@@ -13,21 +13,19 @@
 <?import javafx.scene.text.Text?>
 <fx:root minHeight="240"
          minWidth="240"
-         prefHeight="500.0"
-         prefWidth="600.0"
          type="VBox"
          VBox.vgrow="ALWAYS"
          xmlns="http://javafx.com/javafx/23.0.1"
          xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="dev.jlipka.pickly.controller.sections.ChatSectionController"
          stylesheets="@../../styles/sections/ChatSection.css">
-    <VBox fx:id="chatSection">
+    <VBox fx:id="chatSection" VBox.vgrow="ALWAYS">
         <VBox fx:id="messageInput"
-              VBox.vgrow="ALWAYS"
-              alignment="BOTTOM_CENTER"
               prefWidth="Infinity"
               styleClass="message-input-area">
         </VBox>
-
+        <VBox.margin>
+            <Insets bottom="16"/>
+        </VBox.margin>
     </VBox>
 </fx:root>

@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Value
 public class ServerEventDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
     ServerEventType type;
     String clientID;
     String message;

@@ -11,15 +11,15 @@
          xmlns:fx="http://javafx.com/fxml"
          stylesheets="@../../styles/components/MessageInputArea.css"
          fx:id="messageInputVbox">
-    <HBox>
+    <HBox maxHeight="40">
         <VBox.margin>
             <Insets left="16.0" right="16"/>
         </VBox.margin>
         <MFXButton fx:id="mediaButton" styleClass="media-button" HBox.hgrow="ALWAYS" prefWidth="80" onMouseClicked="#openFileChooser"/>
         <MFXButton fx:id="emojiButton" styleClass="emoji-button" HBox.hgrow="ALWAYS" prefWidth="80" onMouseClicked="#openEmojiPickerNode"/>
-        <VBox HBox.hgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <RichTextArea fx:id="messageField"/>
         </VBox>
-        <MFXButton fx:id="sendButton"  styleClass="send-button" HBox.hgrow="ALWAYS" prefWidth="80"/>
+        <MFXButton fx:id="sendButton"  styleClass="send-button" HBox.hgrow="ALWAYS" prefWidth="80" onMouseClicked="#sendMessage"/>
     </HBox>
 </fx:root>

@@ -18,6 +18,7 @@ module dev.jlipka.pickly {
     requires com.gluonhq.emoji;
     requires org.carrot2.morfologik.polish;
     requires org.carrot2.morfologik.stemming;
+    requires jdk.incubator.vector;
 
 
     exports dev.jlipka.pickly.model;

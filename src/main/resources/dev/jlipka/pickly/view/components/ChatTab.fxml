@@ -8,11 +8,11 @@
 <fx:root xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          fx:controller="dev.jlipka.pickly.controller.components.chat.ChatTabController"
-         type="Tab" >
-<!--    <ImageView>-->
-<!--        <Image url="@../../static/EmptyAvatar.png"/>-->
-<!--    </ImageView>-->
-<!--    <ScrollPane stylesheets="@../../styles/components/ChatTabPane.css">-->
-<!--        <VBox fx:id="chatContainer"/>-->
-<!--    </ScrollPane>-->
+         type="Tab">
+    <ImageView>
+        <Image url="@../../static/EmptyAvatar.png"/>
+    </ImageView>
+    <ScrollPane fitToWidth="true" fitToHeight="true">
+        <VBox fx:id="chatContainer" styleClass="chat-container" VBox.vgrow="ALWAYS"/>
+    </ScrollPane>
 </fx:root>
