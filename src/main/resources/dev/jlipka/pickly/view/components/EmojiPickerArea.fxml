@@ -7,7 +7,7 @@
       fx:controller="dev.jlipka.pickly.controller.components.media.EmojiPickerAreaController"
       stylesheets="@../../styles/components/EmojiPickerArea.css"
       minHeight="120"
-      styleClass="emoji-picker-root">
+      styleClass="emoji-picker-root" visible="false" managed="false" fx:id="emojiPickerRoot">
     <VBox.margin>
         <Insets left="16.0" right="16"/>
     </VBox.margin>

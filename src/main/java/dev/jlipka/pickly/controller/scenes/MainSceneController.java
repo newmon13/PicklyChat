@@ -19,13 +19,6 @@ public class MainSceneController {
     public VBox navSection;
     public HBox footerSection;
 
-    @Getter
-    private TestClient client;
-
-//    public MainSceneController(TestClient client) {
-//        this.client = client;
-//    }
-
     @FXML
     public void initialize() {
         initializeHeader();

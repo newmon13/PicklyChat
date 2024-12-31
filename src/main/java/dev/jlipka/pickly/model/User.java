@@ -40,6 +40,7 @@ public class User {
     private byte[] avatar;
 	private Status status;
 	private ObservableList<String> observableAttributes;
+	private String clientID;
 
 	@Setter
     private int age;

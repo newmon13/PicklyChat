@@ -6,14 +6,13 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);
     /*-fx-max-width: max-wdith is binded with the current width of tab;*/
     -fx-min-width: 200;
-    -fx-padding: 0;
 }
 
 .message-header {
     -fx-spacing: 12;
     -fx-background-color: #86da4a;
     -fx-background-radius: 16 16 0 0;
-    -fx-padding: 2 2 2 2;
+    -fx-padding: 4;
     -fx-alignment: center-left;
 }
 
@@ -24,8 +23,8 @@
 }
 
 .message-content {
-    -fx-background-color: #A6D974;
-    -fx-padding: 10 12;
+    /*-fx-background-color: #A6D974;*/
+    /*-fx-padding: 8*/
 }
 
 .message-text {
@@ -37,7 +36,7 @@
 .message-status {
     -fx-background-color: #A6D974;
     -fx-background-radius: 0 0 16 16;
-    -fx-padding: 1 12;
+    -fx-padding: 0 8 4 4;
     -fx-alignment: center-right;
 }
 
@@ -47,76 +46,33 @@
     -fx-font-family: 'Segoe UI', sans-serif;
 }
 
-/* In case you still want to use TextArea somewhere */
-.text-area {
-    -fx-background-color: #A6D974;
-    -fx-text-fill: #2C3E50;
-    -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-font-size: 14px;
-    -fx-padding: 10 12;
+
+.rich-text-area {
+    /*-fx-min-height: -1;*/
+    /*-fx-pref-height: -1;*/
+    /*-fx-max-height: -1;*/
 }
 
-.text-area .content {
+.rich-text-area > .paragraph-list-view {
     -fx-background-color: #A6D974;
 }
 
+.rich-text-area > .paragraph-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.rich-text-area > .paragraph-list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:odd {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
 
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 1;
+    -fx-opacity: 0;
+}
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
 
-/*message-sent-row {*/
-/*    -fx-alignment: CENTER_RIGHT;*/
-/*}*/
-
-/*message-sent-row > message-container {*/
-/*    -fx-background-color: #A6D974;*/
-/*}*/
-
-/*!* Specific message types *!*/
-/*.message-sent {*/
-/*    -fx-background-color: #A6D974;*/
-/*}*/
-
-/*.message-sent .text-area {*/
-/*    -fx-text-fill: #2C3E50;  !* Darker text for better readability *!*/
-/*}*/
-
-/*.message-received {*/
-/*    -fx-background-color: white;*/
-/*}*/
-
-/*.message-received .text-area {*/
-/*    -fx-text-fill: #2C3E50;*/
-/*}*/
-
-/*!* Status bar styling *!*/
-
-
-/*!* Hover effects *!*/
-/*.message-box:hover .message-header,*/
-/*.message-box:hover .message-sent,*/
-/*.message-box:hover .message-status {*/
-/*    -fx-background-color: #A6D974;  !* Slightly darker shade on hover *!*/
-/*}*/
-
-
-
-/*!* Scrollbar styling for text area *!*/
-/*.text-area .scroll-bar:vertical {*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-pref-width: 8;*/
-/*}*/
-
-/*.text-area .scroll-bar:vertical .thumb {*/
-/*    -fx-background-color: rgba(0,0,0,0.2);*/
-/*    -fx-background-radius: 4;*/
-/*}*/
-
-/*!* Remove text area border *!*/
-/*.text-area {*/
-/*    -fx-background-insets: 0;*/
-/*    -fx-border-width: 0;*/
-/*}*/
-
-/*!* Optional animation for hover state *!*/
-/*.message-box {*/
-/*    -fx-transition: all 0.2s ease-in-out;*/
-/*}*/
+.text-area .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+    -fx-pref-height: 1;
+}

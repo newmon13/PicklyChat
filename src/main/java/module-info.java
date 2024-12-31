@@ -19,6 +19,7 @@ module dev.jlipka.pickly {
     requires org.carrot2.morfologik.polish;
     requires org.carrot2.morfologik.stemming;
     requires jdk.incubator.vector;
+    requires eu.hansolo.toolbox;
 
 
     exports dev.jlipka.pickly.model;

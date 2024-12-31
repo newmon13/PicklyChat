@@ -5,6 +5,7 @@ import com.gluonhq.emoji.EmojiData;
 import com.gluonhq.emoji.util.EmojiImageUtils;
 import com.gluonhq.emoji.util.TextUtils;
 import com.gluonhq.richtextarea.RichTextArea;
+import dev.jlipka.pickly.controller.components.chat.ChatControllersMediator;
 import dev.jlipka.pickly.controller.components.chat.MessageInputAreaController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
@@ -29,6 +30,14 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EmojiPickerAreaController {
     public TabPane emojiTabPane;
+    public HBox emojiPickerRoot;
+    private final ChatControllersMediator mediator;
+
+    public EmojiPickerAreaController() {
+        mediator = ChatControllersMediator.getInstance();
+        mediator.setEmojiPickerAreaController(this);
+    }
+
     @FXML
     public void initialize() {
         populateCategoryTabs();
@@ -75,7 +84,7 @@ public class EmojiPickerAreaController {
                 emojiButton.setOnMouseClicked(mouseEvent -> {
                     Emoji emoji = (Emoji) node.getUserData();
                     richTextAreaHook.getActionFactory().insertEmoji(emoji).execute(new ActionEvent());
-                    MessageInputAreaController.toggleEmojiTabPane();
+                    mediator.toggleEmojiPaneTabPane();
                 });
                 emojiButton.setText("");
                 emojiButton.setGraphic(node);
@@ -109,5 +118,10 @@ public class EmojiPickerAreaController {
         return Arrays.stream(EmojiCatalog.values())
                 .map(EmojiCatalog::getRepresentative)
                 .collect(Collectors.joining());
+    }
+
+    public void toggleEmojiPaneTabPane() {
+        emojiPickerRoot.setVisible(!emojiPickerRoot.isVisible());
+        emojiPickerRoot.setManaged(!emojiPickerRoot.isManaged());
     }
 }

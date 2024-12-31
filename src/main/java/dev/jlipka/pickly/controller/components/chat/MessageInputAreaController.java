@@ -3,7 +3,6 @@ package dev.jlipka.pickly.controller.components.chat;
 import com.gluonhq.richtextarea.RichTextArea;
 import dev.jlipka.pickly.Message;
 import dev.jlipka.pickly.SerializableFile;
-import dev.jlipka.pickly.controller.components.media.EmojiPickerAreaController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.mfxresources.fonts.IconsProviders;
 import io.github.palexdev.mfxresources.fonts.MFXFontIcon;
@@ -15,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +25,7 @@ import static java.util.Arrays.*;
 
 @Slf4j
 public class MessageInputAreaController {
+    private static final String MESSAGE_INPUT_FXML = "/dev/jlipka/pickly/view/components/EmojiPickerArea.fxml";
     public MFXButton mediaButton;
     public MFXButton emojiButton;
     public MFXButton sendButton;
@@ -34,11 +33,12 @@ public class MessageInputAreaController {
     public RichTextArea messageField;
 
     private File selectedFile;
-    private static HBox emojiPickerRoot;
+    private final ChatControllersMediator mediator;
 
-    @Setter
-    private ChatTabPaneController chatTabPaneController;
-
+    public MessageInputAreaController() {
+        mediator = ChatControllersMediator.getInstance();
+        mediator.setMessageInputAreaController(this);
+    }
 
     @FXML
     public void initialize() {
@@ -53,13 +53,10 @@ public class MessageInputAreaController {
     public void createEmojiPickerNode() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/dev/jlipka/pickly/view/components/EmojiPickerArea.fxml"));
-            emojiPickerRoot = loader.load();
-            emojiPickerRoot.setVisible(false);
-            emojiPickerRoot.setManaged(false);
-            messageInputVbox.getChildren().addFirst(emojiPickerRoot);
+                    .getResource(MESSAGE_INPUT_FXML));
+            messageInputVbox.getChildren().addFirst(loader.load());
         } catch (IOException e) {
-            throw   new RuntimeException("Failed to load message input area", e);
+            throw  new RuntimeException("Failed to load message input area", e);
         }
     }
 
@@ -83,8 +80,7 @@ public class MessageInputAreaController {
         messageField.getActionFactory().save().execute(new ActionEvent());
         Platform.runLater(() ->{
             Optional<Message> message = createMessage();
-            ChatTabController controller = chatTabPaneController.getSelectedTabController();
-            message.ifPresent(value -> controller.addMessage(value, MessageDirection.SENDER));
+            message.ifPresent(value -> mediator.send(message.get()));
         });
     }
 
@@ -104,8 +100,7 @@ public class MessageInputAreaController {
         return messageField.getDocument().getText().isEmpty() && Objects.isNull(selectedFile);
     }
 
-    public static void toggleEmojiTabPane() {
-        emojiPickerRoot.setManaged(!emojiPickerRoot.isManaged());
-        emojiPickerRoot.setVisible(!emojiPickerRoot.isVisible());
+    public void toggleEmojiTabPane() {
+        mediator.toggleEmojiPaneTabPane();
     }
 }
