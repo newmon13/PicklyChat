@@ -1,5 +1,4 @@
 module dev.jlipka.pickly {
-    requires javafx.web;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -11,7 +10,6 @@ module dev.jlipka.pickly {
 
     requires org.slf4j;
     requires MaterialFX;
-    requires javafx.media;
     requires de.jensd.fx.glyphs.fontawesome;
     requires de.jensd.fx.glyphs.commons;
     requires com.gluonhq.richtextarea;
@@ -19,7 +17,8 @@ module dev.jlipka.pickly {
     requires org.carrot2.morfologik.polish;
     requires org.carrot2.morfologik.stemming;
     requires jdk.incubator.vector;
-    requires eu.hansolo.toolbox;
+    requires eu.hansolo.tilesfx;
+    requires javafx.media;
 
 
     exports dev.jlipka.pickly.model;

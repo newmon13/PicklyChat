@@ -2,7 +2,6 @@ package dev.jlipka.pickly.controller.components.chat;
 
 import com.gluonhq.richtextarea.RichTextArea;
 import dev.jlipka.pickly.Message;
-import dev.jlipka.pickly.SerializableFile;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.mfxresources.fonts.IconsProviders;
 import io.github.palexdev.mfxresources.fonts.MFXFontIcon;
@@ -15,8 +14,11 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Stream;
 import static dev.jlipka.pickly.controller.utils.IconAccessor.getIcon;
@@ -26,13 +28,13 @@ import static java.util.Arrays.*;
 @Slf4j
 public class MessageInputAreaController {
     private static final String MESSAGE_INPUT_FXML = "/dev/jlipka/pickly/view/components/EmojiPickerArea.fxml";
+    private static final String PICKED_FILES_FXML = "/dev/jlipka/pickly/view/media/PickedFilesArea.fxml";
     public MFXButton mediaButton;
     public MFXButton emojiButton;
     public MFXButton sendButton;
     public VBox messageInputVbox;
     public RichTextArea messageField;
-
-    private File selectedFile;
+    public HBox messageInputHBox;
     private final ChatControllersMediator mediator;
 
     public MessageInputAreaController() {
@@ -48,6 +50,7 @@ public class MessageInputAreaController {
             setIcon(mfxButton, icon);
         });
         createEmojiPickerNode();
+        createPickedFilesNode();
     }
 
     public void createEmojiPickerNode() {
@@ -60,20 +63,28 @@ public class MessageInputAreaController {
         }
     }
 
+    public void createPickedFilesNode() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource(PICKED_FILES_FXML));
+            messageInputVbox.getChildren().add(1, loader.load());
+        } catch (IOException e) {
+            throw  new RuntimeException("Failed to load message input area", e);
+        }
+    }
+
     @FXML
-    public void openFileChooser(MouseEvent event) {
+    public void openFileChooser(MouseEvent event){
         FileChooser fileChooser = new FileChooser();
         Stage stage = (Stage) mediaButton.getScene().getWindow();
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        if (Objects.nonNull(selectedFile)) {
-            log.info("Selected file: {}", selectedFile );
-        }
+        mediator.addFile(fileChooser.showOpenDialog(stage));
     }
 
     @FXML
     public void openEmojiPickerNode() {
         toggleEmojiTabPane();
     }
+
 
     @FXML
     public void sendMessage() {
@@ -89,7 +100,7 @@ public class MessageInputAreaController {
             System.out.println("Message not empty");
             Message message = new Message.MessageBuilder("placeholder-sender-id", "placeholder_receiver-id")
                     .addMessageContent(messageField.getDocument().getText())
-                    .addSerializableFiles(Objects.nonNull(selectedFile) ? List.of(new SerializableFile(selectedFile)) : Collections.emptyList())
+//                    .addSerializableFiles(Objects.nonNull(selectedFile) ? List.of(new SerializableFile(selectedFile)) : Collections.emptyList())
                     .build();
             return Optional.ofNullable(message);
         }
@@ -97,7 +108,7 @@ public class MessageInputAreaController {
     }
 
     private boolean isMessageEmpty() {
-        return messageField.getDocument().getText().isEmpty() && Objects.isNull(selectedFile);
+        return messageField.getDocument().getText().isEmpty() && mediator.getSelectedFiles().isEmpty();
     }
 
     public void toggleEmojiTabPane() {

@@ -25,7 +25,7 @@
         <Text fx:id="userName" styleClass="username-text"/>
     </HBox>
     <Separator/>
-    <VBox fx:id="messageContentContainer"/>
+    <VBox fx:id="messageContentContainer" />
     <Separator/>
     <HBox styleClass="message-status" alignment="CENTER_RIGHT">
         <Text fx:id="statusText" styleClass="status-text" />

@@ -40,7 +40,7 @@ public class EmojiPickerAreaController {
 
     @FXML
     public void initialize() {
-        populateCategoryTabs();
+//        populateCategoryTabs();
     }
 
     private void populateCategoryTabs() {

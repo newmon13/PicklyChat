@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.jlipka.pickly.controller.components.media.PickedFilesAreaController"
+      stylesheets="@../../styles/components/PickedFilesArea.css"
+      maxHeight="40"
+      styleClass="picked-files-area-root" fx:id="pickedFilesRoot">
+    <VBox.margin>
+        <Insets left="16.0" right="16"/>
+    </VBox.margin>
+    <TabPane fx:id="fileTabPane" HBox.hgrow="ALWAYS" style="-fx-background-color: red;"/>
+</HBox>

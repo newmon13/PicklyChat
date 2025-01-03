@@ -1,0 +1,42 @@
+.picked-files-area-root {
+    -fx-min-height: 50;
+    -fx-pref-height: 50;
+    -fx-background-color: #84B059;
+}
+
+.tab-pane .tab {
+    -fx-background-radius: 16;
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #84B059;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: derive(#84B059, -10%);
+}
+
+.tab-pane .tab .tab-close-button {
+    -fx-background-color: white;
+    -fx-shape: "M 0,0 H1 L 4,3 L 7,0 H8 V1 L 5,4 L 8,7 V8 H7 L 4,5 L 1,8 H0 V7 L 3,4 L 0,1 Z";
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+}
+
+.tab-pane .tab .tab-close-button:hover {
+    -fx-background-color: derive(white, -20%);
+}
+
+
+/* Disable content area */
+.tab-pane > .tab-content-area {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
