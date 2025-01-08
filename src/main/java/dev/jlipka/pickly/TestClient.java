@@ -41,11 +41,16 @@ public class TestClient {
 
     private void handleEvent(ServerEventDTO event) {
         switch (event.getType()) {
-            case USER_CONNECTED -> log.info("User connected");
+            case USER_CONNECTED -> {
+                log.info("User connected: " + event.getClientID());
+            }
             case USER_DISCONNECTED -> log.info("User disconnected");
             case MESSAGE_RECEIVED -> log.info("Message received");
             case INITIAL_STATE -> {
-                if (Objects.nonNull(clientID)) {
+                if (Objects.isNull(clientID)) {
+
+                    System.out.println(event.getMetadata().get("connectedUsers"));
+
                     clientID = event.getClientID();
                     log.info("Setting up client id");
                 } else {
@@ -59,28 +64,4 @@ public class TestClient {
     public void close() throws IOException {
         socket.close();
     }
-
-    public void sendMessage(Message message, String clientID) {
-        try {
-            connection.write(message);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-//    public static void main(String[] args) throws IOException {
-//        TestClient client = new TestClient();
-//        Message message = new Message.MessageBuilder("adasd", "asdsadas")
-//                .addMessageContent("co tam chuju")
-//                .build();
-//        client.sendMessage(message);
-//
-//        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-//            try {
-//                client.close();
-//            } catch (IOException e) {
-//                System.err.println("Error during shutdown: " + e.getMessage());
-//            }
-//        }));
-//    }
 }

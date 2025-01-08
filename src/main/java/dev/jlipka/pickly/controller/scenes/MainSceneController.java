@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 
@@ -19,12 +20,15 @@ public class MainSceneController {
     public VBox navSection;
     public HBox footerSection;
 
+    private TestClient client;
+
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         initializeHeader();
         initializeChatSection();
         initializeNavSection();
         initializeFooterSection();
+        client = new TestClient();
     }
 
     public void initializeHeader() {

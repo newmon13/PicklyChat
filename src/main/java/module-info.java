@@ -6,7 +6,6 @@ module dev.jlipka.pickly {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
-    requires java.sql;
 
     requires org.slf4j;
     requires MaterialFX;
@@ -19,6 +18,10 @@ module dev.jlipka.pickly {
     requires jdk.incubator.vector;
     requires eu.hansolo.tilesfx;
     requires javafx.media;
+    requires jbcrypt;
+    requires ch.qos.logback.core;
+    requires java.sql;
+    requires com.h2database;
 
 
     exports dev.jlipka.pickly.model;

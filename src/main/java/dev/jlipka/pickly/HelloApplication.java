@@ -1,5 +1,6 @@
 package dev.jlipka.pickly;
 
+import dev.jlipka.pickly.controller.scenes.MainSceneController;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;
@@ -27,7 +28,8 @@ public class HelloApplication extends Application {
                 .setGlobal();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/scenes/MainScene.fxml"));
-        Font.loadFont(getClass().getResourceAsStream("dev/jlipka/pickly/font/fontawesome-webfont.ttf"), 12);
+//        MainSceneController controller = loader.getController();
+//        controller.setClient(new TestClient());
 
         Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("Pickly");
