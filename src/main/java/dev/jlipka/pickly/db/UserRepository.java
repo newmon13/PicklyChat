@@ -1,71 +1,88 @@
 package dev.jlipka.pickly.db;
 
-import dev.jlipka.pickly.model.User;
+import dev.jlipka.pickly.model.Status;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 public class UserRepository {
     private final Connection connection;
-    private final UserMapper userMapper;
 
     public UserRepository(Connection connection) {
         this.connection = connection;
-        this.userMapper = new UserMapper();
     }
 
-    public List<User> getAllUsers() {
-        String sql = "SELECT * FROM userAccounts";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
-            List<User> users = new ArrayList<>();
-            while (resultSet.next()) {
-                users.add(userMapper.mapFromResultSet(resultSet));
+    public Optional<User> findByLogin(String login) {
+        String sql = "SELECT * FROM userAccounts WHERE login = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, login);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(UserMapper.mapFromResultSet(resultSet));
+                } else {
+                    return Optional.empty();
+                }
             }
-            return users;
         } catch (SQLException e) {
-            log.error("Failed to fetch all users", e);
-            throw new RuntimeException("Failed to fetch users", e);
+            log.error("Failed to fetch user with login: {}, SQL state: {}", login, e.getSQLState());
+            throw new RuntimeException("Failed to fetch user by login", e);
         }
     }
 
-    public Optional<User> getUserByUsername(String username) {
-        String sql = "SELECT * FROM userAccounts WHERE username = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, username);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                return Optional.of(userMapper.mapFromResultSet(resultSet));
+    public Optional<User> findByID(UUID userID) {
+        String sql = "SELECT * FROM userAccounts WHERE userID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setObject(1, userID);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(UserMapper.mapFromResultSet(rs));
+                } else {
+                    return Optional.empty();
+                }
             }
-            return Optional.empty();
         } catch (SQLException e) {
-            log.error("Failed to fetch user by username: {}", username, e);
-            throw new RuntimeException("Failed to fetch user", e);
+            log.error("Failed to fetch user with userID: {}", userID, e);
+            throw new RuntimeException("Failed to fetch user by id", e);
+        }
+    }
+    public void save(User userToSave) {
+        String sql = "INSERT INTO userAccounts VALUES (?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+          ps.setObject(1, userToSave.getUserID());
+          ps.setString(2, userToSave.getLogin());
+          ps.setString(3, userToSave.getPasswordHash());
+          ps.setString(4, userToSave.getUsername());
+          ps.setString(5, userToSave.getName());
+          ps.setString(6, userToSave.getSurname());
+          ps.setString(7, userToSave.getStatus().toString());
+          ps.setBlob(8, userToSave.getAvatar());
+          ps.setInt(9, userToSave.getAge());
+          ps.setTimestamp(10, userToSave.getCreatedAt());
+          ps.executeUpdate();
+          log.info("Successfully inserted user: {}", userToSave.getUserID());
+        } catch (SQLException e) {
+            log.error("Failed to insert user: {}", userToSave.getUserID(), e);
+            throw new RuntimeException(e);
         }
     }
 
-    public synchronized void updateUser(User user) {
-        String sql = "UPDATE userAccounts SET name = ?, surname = ?, status = ?, avatar = ?, age = ? WHERE username = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setString(3, user.getStatus().toString());
-            preparedStatement.setBytes(4, user.getAvatar());
-            preparedStatement.setInt(5, user.getAge());
-            preparedStatement.setString(6, user.getUsername());
-            preparedStatement.executeUpdate();
+    public void updateStatusByID(UUID userID, Status status) {
+        String sql = "UPDATE userAccounts SET status = ? WHERE userID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, status.toString());
+            ps.setObject(2, userID);
+            ps.executeUpdate();
+            log.info("Successfully updated user's status to {}", status);
         } catch (SQLException e) {
-            log.error("Failed to update user: {}", user.getUsername(), e);
-            throw new RuntimeException("Failed to update user", e);
+            log.error("Failed to user's status: {}", userID, e);
+            throw new RuntimeException(e);
         }
     }
 }

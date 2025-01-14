@@ -1,0 +1,7 @@
+package dev.jlipka.pickly.db;
+
+public class UserAlreadyExistsException extends RuntimeException {
+    public UserAlreadyExistsException(String message) {
+        super(message);
+    }
+}

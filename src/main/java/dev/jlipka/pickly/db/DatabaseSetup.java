@@ -13,7 +13,6 @@ public class DatabaseSetup {
 
     public void createTables() {
         try (Statement statement = connection.createStatement()) {
-            // Create chats table first since it's referenced by other tables
             statement.execute("""
                 CREATE TABLE chats(
                     chatID UUID PRIMARY KEY,
@@ -61,10 +60,12 @@ public class DatabaseSetup {
             statement.execute("""
                 CREATE TABLE attachments(
                     attachmentID UUID PRIMARY KEY,
+                    chatID UUID NOT NULL,
                     messageID UUID NOT NULL,
                     mimeType VARCHAR(20) CHECK (mimeType IN ('ARCHIVE', 'PDF', 'TEXT', 'IMAGE', 'AUDIO', 'VIDEO', 'UNKNOWN')),
                     attachmentContent BLOB NOT NULL,
                     uploadedAt TIMESTAMP NOT NULL,
+                    FOREIGN KEY (chatID) REFERENCES chats(chatID),
                     FOREIGN KEY (messageID) REFERENCES messages(messageID)
                 )
             """);

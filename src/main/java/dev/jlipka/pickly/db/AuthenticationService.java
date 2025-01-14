@@ -3,51 +3,36 @@ package dev.jlipka.pickly.db;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 
+
+import javax.security.sasl.AuthenticationException;
 import java.sql.*;
-import java.util.UUID;
 
 @Slf4j
 public class AuthenticationService {
-    private final Connection connection;
+    private final UserRepository userRepository;
 
-    public AuthenticationService(Connection connection) {
-        this.connection = connection;
+    public AuthenticationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public boolean checkCredentials(String login, String password) {
-        String sql = "SELECT passwordHash FROM userAccounts WHERE login = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, login);
-            ResultSet resultSet = preparedStatement.executeQuery();
+    public User authenticate(String login, String password) {
+        try {
+            return userRepository.findByLogin(login)
+                    .filter(user -> BCrypt.checkpw(password, user.getPasswordHash()))
+                    .orElseThrow(() -> new AuthenticationException("Invalid credentials: " + login));
 
-            if (resultSet.next()) {
-                String storedHash = resultSet.getString("hashedPassword");
-                return BCrypt.checkpw(password, storedHash);
-            }
-            return false;
-        } catch (SQLException e) {
-            log.error("Failed to check credentials for login: {}", login, e);
+        } catch (AuthenticationException e) {
+            log.error("Failed to authenticate user with login: {}", login, e);
             throw new RuntimeException("Authentication failed", e);
         }
     }
-
-    public void registerUser(String login, String password, String username) {
-        String sql = "INSERT INTO userAccounts (userID, login, passwordHash, username, status, createdAt) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setObject(1, UUID.randomUUID());
-            preparedStatement.setString(2, login);
-            preparedStatement.setString(3, hashPassword(password));
-            preparedStatement.setString(4, username);
-            preparedStatement.setString(5, "ONLINE");
-            preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            log.error("Failed to register user with login: {}", login, e);
-            throw new RuntimeException("User registration failed", e);
+    public User register(String login, String hashedPassword, String username) {
+        if (userRepository.findByLogin(login).isPresent()) {
+            log.error("Failed to register user - login already taken: {}", login);
+            throw new RuntimeException("User with login already exists: " + login);
         }
-    }
-
-    private String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+        User userToSave = UserMapper.mapToNewUser(login, hashedPassword, username);
+        userRepository.save(userToSave);
+        return userToSave;
     }
 }
